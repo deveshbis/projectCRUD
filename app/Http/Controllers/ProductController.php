@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
+    // Create Product
+
     public function createProductView()
     {
         return view('product.create');
@@ -35,13 +38,24 @@ class ProductController extends Controller
         return redirect()->route('home')->with('success', 'Product Added Succesfully');
     }
 
-    public function getPruductList()
-    {
-        $products = Product::get();
+    // Get Product
 
-        return view('welcome', compact('products'));
+    public function getPruductList(Request $request)
+    {
+        $search = $request->input('search'); 
+
+        $products = Product::orderBy('created_at', 'desc')->paginate(5);
+
+        if ($search) {
+            $products = Product::where('name', 'like', '%' . $search . '%')
+            ->paginate(5);
+        }
+
+        return view('index', compact('products'));
     }
 
+
+    // Edit Product
 
     public function editProduct($id)
     {
@@ -51,6 +65,7 @@ class ProductController extends Controller
 
     public function updateProduct(Request $request)
     {
+        // Product Validation
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -64,10 +79,13 @@ class ProductController extends Controller
             'quantity' => $request->quantity,
         ];
 
-        $update = Product::where(['id' => $request->id])->update($data);
+        $update = Product::where('id', $request->id)->update($data);
 
         return redirect()->route('home')->with('success', 'Product Updated Succesfully');
     }
+
+
+    // Delete Product
 
     public function deleteProduct(Request $request)
     {

@@ -9,25 +9,30 @@
 </head>
 
 <body>
-    <h2 class='text-5xl text-center font-extrabold underline'>Laravel CRUD</h2>
+    <h2 class='text-5xl text-center font-extrabold underline mt-5'>Laravel CRUD</h2>
 
-    @if (session('session'))
+    <!-- @if (session('session'))
     <h2>{{session('seccess')}}</h2>
-    @endif
+    @endif -->
     <div class="font-[sans-serif] overflow-x-auto mt-16 max-w-7xl mx-auto border">
         <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
 
-            <div class="flex rounded-full border-2 border-blue-500 overflow-hidden font-[sans-serif]">
-                <input type="email" placeholder="Search Something..."
-                    class="w-full outline-none bg-white text-sm px-5 py-3" />
-                <button type='button' class="flex items-center justify-center bg-blue-500 hover:bg-blue-600 px-6">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="18px" class="fill-white">
-                        <path
-                            d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z">
-                        </path>
-                    </svg>
-                </button>
-            </div>
+            <form method="GET" action="{{ route('home') }}">
+                @csrf
+                <div class="flex rounded-full border-2 border-blue-500 overflow-hidden font-[sans-serif]">
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Search Something..."
+                        class="w-full outline-none bg-white text-sm px-5 py-3" />
+                    <button type="submit" class="flex items-center justify-center bg-blue-500 hover:bg-blue-600 px-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="18px" class="fill-white">
+                            <path d="m190.707 180.101-47.078-47.077c11.702-14.072 18.752-32.142 18.752-51.831C162.381 36.423 125.959 0 81.191 0 36.422 0 0 36.423 0 81.193c0 44.767 36.422 81.187 81.191 81.187 19.688 0 37.759-7.049 51.831-18.751l47.079 47.078a7.474 7.474 0 0 0 5.303 2.197 7.498 7.498 0 0 0 5.303-12.803zM15 81.193C15 44.694 44.693 15 81.191 15c36.497 0 66.189 29.694 66.189 66.193 0 36.496-29.692 66.187-66.189 66.187C44.693 147.38 15 117.689 15 81.193z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+
             <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                 <a href="product/create/view"
                     class="bg-white text-center cursor-pointer py-2.5 min-w-[140px] shadow-xl shadow-blue-200 text-black text-sm tracking-wider font-medium outline-none border border-blue-600 active:shadow-inner">Add Product</a>
@@ -75,17 +80,17 @@
                             </svg>
                         </a>
                         <form action="{{ route('product-delete') }}" method="post" style="display: inline;">
-                                @csrf
-                                <input type="hidden" name="id" value="{{$product->id}}"/>
-                                <button type="submit" class="mr-4" title="Delete">
+                            @csrf
+                            <input type="hidden" name="id" value="{{$product->id}}" />
+                            <button type="submit" class="mr-4" title="Delete">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-red-500 hover:fill-red-700" viewBox="0 0 24 24">
-                                <path
-                                    d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
-                                    data-original="#000000" />
-                                <path d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
-                                    data-original="#000000" />
-                            </svg>
-                                </button>
+                                    <path
+                                        d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
+                                        data-original="#000000" />
+                                    <path d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
+                                        data-original="#000000" />
+                                </svg>
+                            </button>
                         </form>
                         <!-- <a href="{{route('product-delete', $product->id)}}" class="mr-4" title="Delete"> -->
                         </a>
@@ -94,6 +99,38 @@
                 @endforeach
             </tbody>
         </table>
+        <ul class="flex mx-auto border-2 divide-x-2 rounded-lg overflow-hidden w-max font-[sans-serif] mb-5 mt-5">
+            {{-- Previous Button --}}
+            <li class="flex items-center justify-center shrink-0 px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm text-gray-800">
+                @if ($products->onFirstPage())
+                <span>Previous</span>
+                @else
+                <a href="{{ $products->previousPageUrl() }}">
+                    Previous
+                </a>
+                @endif
+            </li>
+
+            {{-- Page Numbers --}}
+            @foreach ($products->links()->elements[0] as $page => $url)
+            <li class="flex items-center justify-center shrink-0 px-4 py-2 hover:bg-gray-50 cursor-pointer text-base font-bold 
+        @if ($page == $products->currentPage()) !bg-gray-100 text-gray-800 @else @endif">
+                <a href="{{ $url }}">{{ $page }}</a>
+            </li>
+            @endforeach
+
+            {{-- Next Button --}}
+            <li class="flex items-center justify-center shrink-0 px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm text-gray-800">
+                @if ($products->hasMorePages())
+                <a href="{{ $products->nextPageUrl() }}">
+                    Next
+                </a>
+                @else
+                <span>Next</span>
+                @endif
+            </li>
+        </ul>
+
     </div>
 </body>
 
