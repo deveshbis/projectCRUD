@@ -9,8 +9,8 @@
 </head>
 
 <body>
-    <h2 class='text-5xl text-center font-extrabold underline'>Laravel CRUD</h2>
-    <div class="font-[sans-serif] mt-10">
+    <h2 class='text-5xl text-center font-extrabold underline mt-5'>Product Management System</h2>
+    <div class="font-[sans-serif] mt-5">
         <div class="bg-gradient-to-r from-blue-700 to-blue-300 w-full h-36"></div>
         <div class="-mt-20 mb-6 px-4">
             <div class="mx-auto max-w-6xl shadow-lg p-8 relative bg-white rounded-lg">

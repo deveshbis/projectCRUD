@@ -9,12 +9,12 @@
 </head>
 
 <body>
-    <h2 class='text-5xl text-center font-extrabold underline mt-5'>Laravel CRUD</h2>
+    <h2 class='text-5xl text-center font-extrabold underline mt-5'>Product Management System</h2>
 
     <!-- @if (session('session'))
     <h2>{{session('seccess')}}</h2>
     @endif -->
-    <div class="font-[sans-serif] overflow-x-auto mt-16 max-w-7xl mx-auto border">
+    <div class="font-[sans-serif] overflow-x-auto mt-5 max-w-7xl mx-auto border">
         <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
 
             <form method="GET" action="{{ route('home') }}">
@@ -92,8 +92,6 @@
                                 </svg>
                             </button>
                         </form>
-                        <!-- <a href="{{route('product-delete', $product->id)}}" class="mr-4" title="Delete"> -->
-                        </a>
                     </td>
                 </tr>
                 @endforeach

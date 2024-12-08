@@ -35,7 +35,9 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('home')->with('success', 'Product Added Succesfully');
+        flash()->success('Product Added Succesfully');
+
+        return redirect()->route('home');
     }
 
     // Get Product
@@ -81,7 +83,9 @@ class ProductController extends Controller
 
         $update = Product::where('id', $request->id)->update($data);
 
-        return redirect()->route('home')->with('success', 'Product Updated Succesfully');
+        flash()->success('Product Updated Succesfully.');
+
+        return redirect()->route('home');
     }
 
 
@@ -91,6 +95,8 @@ class ProductController extends Controller
     {
         $delete = Product::where(['id' => $request->id])->delete();
 
-        return redirect()->route('home')->with('success', 'Product Deleted Succesfully');
+        flash()->success('Product Deleted Succesfully.');
+
+        return redirect()->route('home');
     }
 }
